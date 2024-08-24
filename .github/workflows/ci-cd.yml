@@ -1,0 +1,40 @@
+name: CI/CD to Google Cloud Run
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v2
+
+    - name: Set up Google Cloud SDK
+      uses: google-github-actions/setup-gcloud@v1
+      with:
+        version: 'latest'
+        service_account_key: ${{ secrets.GCP_SA_KEY }}
+        project_id: ${{ secrets.GCP_PROJECT_ID }}
+
+    - name: Configure Docker to use the gcloud command-line tool as a credential helper
+      run: gcloud auth configure-docker
+
+    - name: Build Docker image
+      run: |
+        docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/my-fastapi-app:latest .
+
+    - name: Push Docker image to Google Container Registry
+      run: |
+        docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/my-fastapi-app:latest
+
+    - name: Deploy to Google Cloud Run
+      run: |
+        gcloud run deploy my-fastapi-app \
+          --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/my-fastapi-app:latest \
+          --platform managed \
+          --region us-central1 \
+          --allow-unauthenticated

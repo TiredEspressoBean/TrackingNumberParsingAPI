@@ -1,0 +1,59 @@
+# Test your FastAPI endpoints
+
+GET http://127.0.0.1:8000/status
+Accept: application/json
+
+###
+
+GET 127.0.0.1:8000/carriers
+Accept: application/json
+
+###
+
+POST 127.0.0.1:8000/track/
+Accept: application/json
+
+###
+
+
+POST 127.0.0.1:8000/track/?tracking_number=TBA619632698000
+Accept: application/json
+
+
+###
+
+POST 127.0.0.1:8000/track/?tracking_number=1Z5R89390357567127
+Accept: application/json
+
+
+###
+
+POST 127.0.0.1:8000/track/?tracking_number=71123456789123456787
+Accept: application/json
+
+###
+
+POST 127.0.0.1:8000/track/?tracking_number=RB123456785US
+Accept: application/json
+
+###
+
+POST 127.0.0.1:8000/track/?tracking_number=3318810025
+Accept: application/json
+
+###
+
+POST 127.0.0.1:8000/track/?tracking_number=986578788855
+Accept: application/json
+
+###
+
+POST 127.0.0.1:8000/track/?tracking_number=C11031500001879
+Accept: application/json
+
+###
+
+POST 127.0.0.1:8000/track/?tracking_number=LH13820881
+Accept: application/json
+
+
