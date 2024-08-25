@@ -33,12 +33,12 @@ jobs:
 
       - name: Push Docker image to Google Container Registry
         run: |
-          docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/my-fastapi-app:latest
+          docker push gcr.io${{ secrets.GCP_PROJECT_ID }}my-fastapi-app:latest
 
       - name: Deploy to Google Cloud Run
         run: |
           gcloud run deploy my-fastapi-app \
-            --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/my-fastapi-app:latest \
+            --image gcr.io${{ secrets.GCP_PROJECT_ID }}my-fastapi-app:latest \
             --platform managed \
             --region us-central1 \
             --allow-unauthenticated
