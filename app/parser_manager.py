@@ -9,6 +9,10 @@ class ParseManager:
         self.__load_parsers()
 
     def __load_parsers(self):
+        """
+        Set up the engine with all the current parsers currently available
+        :return: None
+        """
         for finder, name, ispkg in pkgutil.iter_modules(['app/parsers']):
             if name != 'base_parser' and name != 'BaseParser':
                 module = importlib.import_module(f'app.parsers.{name}')
