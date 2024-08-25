@@ -37,7 +37,7 @@ jobs:
 
       - name: Deploy to Google Cloud Run
         run: |
-          gcloud run deploy my-fastapi-app \
+          gcloud run deploy trackingnumberparsingapi \
             --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/trackingnumberparsingapi:latest \
             --platform managed \
             --region us-central1 \
